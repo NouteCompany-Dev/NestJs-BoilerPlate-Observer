@@ -1,13 +1,14 @@
-import { IsEmail, IsString } from 'class-validator';
 import { Role } from './role.enum';
+import { IsEmail, IsString } from 'class-validator';
 
 export class User {
-  id?: number;
-  name?: string;
-  @IsEmail()
-  email?: string;
+  id?: string;
   @IsString()
   password?: string;
+  name?: string;
+  phone?: string
+  @IsEmail()
+  email?: string;
   imagePath?: string;
   role?: Role;
 }

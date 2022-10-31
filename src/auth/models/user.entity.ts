@@ -1,3 +1,4 @@
+import { Role } from './role.enum';
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('User')
@@ -21,7 +22,7 @@ export class UserEntity {
     imagePath: string
 
     @Column()
-    role: string
+    role: Role
 
     @CreateDateColumn()
     createdAt: Date

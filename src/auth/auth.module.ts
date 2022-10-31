@@ -4,6 +4,8 @@ import { JwtGuard } from './guards/jwt.guard';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
+import { AuthService } from './services/auth.service';
+import { UserRepository } from 'src/repository/user.repository';
 
 @Module({
     imports: [
@@ -13,10 +15,10 @@ import { JwtModule } from "@nestjs/jwt";
                 signOptions: { expiresIn: '3600s' }
             })
         }),
-        TypeOrmModule.forFeature([]) // Entity 주입
+        TypeOrmModule.forFeature([UserRepository]) // Entity 주입
     ],
     providers: [JwtGuard, JwtStrategy, RolesGuard],
     controllers: [], //AuthController
-    exports: [] //AuthService
+    exports: [AuthService] //AuthService
 })
 export class AuthModule { }
