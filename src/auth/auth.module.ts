@@ -17,7 +17,7 @@ import { AuthController } from './controllers/auth.controller';
                 signOptions: { expiresIn: '3600s' }
             })
         }),
-        TypeOrmModule.forFeature([UserRepository, UserEntity]) // Entity 주입
+        TypeOrmModule.forFeature([UserRepository, UserEntity])
     ],
     providers: [AuthService, JwtGuard, JwtStrategy, RolesGuard],
     controllers: [AuthController],

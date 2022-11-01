@@ -18,7 +18,6 @@ async function bootstrap() {
   //cors 설정
   let envAllow = process.env.ALLOW_CORS_LIST
   let allowList = envAllow.split(',')
-  Array.isArray(allowList)
   app.enableCors({
     origin: allowList,
     methods: ['GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'],
