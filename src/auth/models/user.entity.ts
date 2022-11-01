@@ -21,8 +21,8 @@ export class UserEntity {
     @Column({ nullable: true })
     imagePath: string
 
-    @Column()
-    role: Role
+    @Column({ type: 'enum', enum: Role, default: Role.USER })
+    role: Role;
 
     @CreateDateColumn()
     createdAt: Date

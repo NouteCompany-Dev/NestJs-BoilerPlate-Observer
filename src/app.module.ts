@@ -19,7 +19,7 @@ import { APP_FILTER } from '@nestjs/core'
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_DATABASE,
       autoLoadEntities: true,
-      synchronize: false
+      synchronize: true
     }),
   ],
   controllers: [],
