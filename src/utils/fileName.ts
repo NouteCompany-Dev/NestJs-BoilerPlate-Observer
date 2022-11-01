@@ -1,4 +1,4 @@
-import path from 'path'
+import { extname, basename } from 'path'
 import { v4 } from 'uuid'
 
 export const s3FileName = (file: any): string => {
@@ -11,7 +11,7 @@ export const s3FileName = (file: any): string => {
     let seconds = date.getSeconds();
     let today = (year + month + day + hours + minutes + seconds);
     let uuid = v4(file.originalname);
-    let ext = path.extname(file.originalname)
-    let filename = today + '-' + path.basename(uuid, ext) + ext
+    let ext = extname(file.originalname)
+    let filename = today + '-' + basename(uuid, ext) + ext
     return filename
 }

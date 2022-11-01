@@ -1,4 +1,4 @@
-import { UserRepository } from './../../repository/user.repository';
+import { UserRepository } from '../repository/user.repository';
 import { User } from './../models/user.class';
 import { catchError, from, map, Observable, of, switchMap } from 'rxjs';
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";

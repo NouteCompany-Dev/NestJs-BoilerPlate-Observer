@@ -1,13 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common'
-import fs from 'fs'
+import { createWriteStream } from 'fs'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 dotenv.config()
 
-const logStream = fs.createWriteStream('logs/api.log', {
+const logStream = createWriteStream('logs/api.log', {
   flags: 'a', //appren
 })
 
