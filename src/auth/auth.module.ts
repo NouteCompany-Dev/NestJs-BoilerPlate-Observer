@@ -1,3 +1,4 @@
+import { UserEntity } from 'src/auth/models/user.entity';
 import { RolesGuard } from './guards/roles.guard';
 import { JwtStrategy } from './guards/jwt.strategy';
 import { JwtGuard } from './guards/jwt.guard';
@@ -6,6 +7,7 @@ import { Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
 import { AuthService } from './services/auth.service';
 import { UserRepository } from 'src/repository/user.repository';
+import { AuthController } from './controllers/auth.controller';
 
 @Module({
     imports: [
@@ -15,10 +17,10 @@ import { UserRepository } from 'src/repository/user.repository';
                 signOptions: { expiresIn: '3600s' }
             })
         }),
-        TypeOrmModule.forFeature([UserRepository]) // Entity 주입
+        TypeOrmModule.forFeature([UserRepository, UserEntity]) // Entity 주입
     ],
-    providers: [JwtGuard, JwtStrategy, RolesGuard],
-    controllers: [], //AuthController
-    exports: [AuthService] //AuthService
+    providers: [AuthService, JwtGuard, JwtStrategy, RolesGuard],
+    controllers: [AuthController],
+    exports: [AuthService]
 })
 export class AuthModule { }

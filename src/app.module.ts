@@ -1,12 +1,13 @@
+import { AllExceptionsFilter } from './core/all-exception.filter';
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { APP_FILTER } from '@nestjs/core'
 
 @Module({
   imports: [
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true
     }),
@@ -16,11 +17,17 @@ import { APP_FILTER } from '@nestjs/core'
       port: parseInt(process.env.DATABASE_PORT),
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_DATABASE,
       autoLoadEntities: true,
       synchronize: false
-    })
+    }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter
+    },
+  ],
 })
 export class AppModule { }
